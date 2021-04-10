@@ -3,7 +3,7 @@ let mapImg;
 let lonMid = '-2', latMid = '51', mapZoom = '6.2';  //central lat/lon and zoom level for map
 
 function preload(){
-  //weather api
+	//weather api
 	let weatherKey = '5e48243f4e2c1794ffeb1248ec1503a7';   //api key
 	let lonLeft = '-6', latBottom = '49.8', lonRight = '3', latTop  = '51.5', weatherZoom = '10';  //API call bounding box coords
 	let weatherUrl = 'http://api.openweathermap.org/data/2.5/box/city?bbox=' + lonLeft + ',' + latBottom + ',' + lonRight + ',' + latTop + ',' + weatherZoom + '&appid=' + weatherKey + '&units=metric';
@@ -59,14 +59,14 @@ function setup() {
 	}
 }
 
-function mercX(lon) {
+function mercX(lon) {	/* Takes a longitude and translates to an x position on the map (using the mercator projection) */
 	lon = radians(lon);
 	let a = (256 / PI) * pow(2, mapZoom);
 	let b = lon + PI;
 	return a * b;
 }
 
-function mercY(lat){
+function mercY(lat){	/* Takes lat and translates to Y pos*/
 	lat = radians(lat);
 	let a = (256 / PI) * pow(2, mapZoom);
 	let b = tan(PI/4 + lat/2);

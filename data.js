@@ -1,6 +1,6 @@
 function loadMap(){		/* constructs mapBox api uri and loads map as an image */
 	mapKey = "pk.eyJ1IjoiYmVuLXNhbmRpc29uIiwiYSI6ImNrbXdzb25ucDBpNTMyb252NWUxZDJpMzAifQ.VihZeh8XW1EXJ3HDCTi6Yg"
-	styleUrl = "ben-sandison/cknesa8u13c4k17l4pzc6xzlc"		/* url for my custom styling */
+	styleUrl = "ben-sandison/cknf0a2vx3ibf17o753pyt5ep"		/* url for my custom styling */
 	mapUrl = "https://api.mapbox.com/styles/v1/" + styleUrl + "/static/" + mapData.lonMid + "," + mapData.latMid + "," + mapData.mapZoom + ",0/" + mapData.mapX + "x" + mapData.mapY + "?access_token=" + mapKey;
 	
 	mapImg = loadImage(mapUrl);		// load map to "mapImage"

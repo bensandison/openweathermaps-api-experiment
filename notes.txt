@@ -2,5 +2,39 @@ CLASSES:
 sketch.js - main, will continue to handle mapbox requests for now.
 data.js - gets all data needed + makes global JS object to store it (using mercador function).
 
+Data class will have a funciton to load data and add it to a weather obj, this obj will be stored in main
+The dataload func will be called in sketch.js preload.
+
+
 
 I am going to have to learn more about OOP in JS to get to know it more!
+
+
+
+
+function loadMap(){
+	let mapKey = 'pk.eyJ1IjoiYmVuLXNhbmRpc29uIiwiYSI6ImNrbXdzcmZoazBpNzkydm52bXk4dG5wNW0ifQ.qZTYDoEcLJSjYow5OWIqqQ';
+	let mapUrl = 'https://api.mapbox.com/styles/v1/mapbox/dark-v9/static/' + lonMid + ',' + latMid + ',' + mapZoom + ',0/800x400?access_token=' + mapKey;	//variables used here are declared in sketch.js
+	mapImg = loadImage(mapUrl);		//loads map image to 
+}
+
+function loadMapTwo(){
+	const options = {
+		lat: 51,
+		lng: -2,
+		zoom: 6.2,
+		width: 800,
+		height: 600,
+		scale: 1,
+		pitch: 0,
+		//style: 'dark-v9',
+		style: "mapbox://styles/ben-sandison/cknbw8j6g10bh18o1040l8myf",
+	};
+	
+const mappa = new Mappa('Mapbox', key);
+
+const myMap = mappa.staticMap(options);
+mapImg = loadImage(myMap.imgUrl);
+
+print(myMap.imgUrl);
+}

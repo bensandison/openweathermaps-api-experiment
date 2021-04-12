@@ -1,0 +1,6 @@
+CLASSES:
+sketch.js - main, will continue to handle mapbox requests for now.
+data.js - gets all data needed + makes global JS object to store it (using mercador function).
+
+
+I am going to have to learn more about OOP in JS to get to know it more!

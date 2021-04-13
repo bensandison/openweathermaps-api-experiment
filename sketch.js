@@ -21,17 +21,17 @@ function setup() {
 	translate(width / 2, height/2);
 	imageMode(CENTER);
 	calculateCoords();	//calculate x and y positions of cities
+	image(mapImg, 0, 0);	//draw map image
 
 	for (var i = 0; i < 100; i++){
 		particles[i] = new Particle();
 	}
-	
-	//image(mapImg, 0, 0);	//Draws map image
+
 }
 
 function draw(){
 	strokeWeight(2);
-	background(200, 10);
+	background(255, 10);
 	for (var i = 0; i < particles.length; i++){
 		particles[i].update();
 		particles[i].show();

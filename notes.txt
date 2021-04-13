@@ -14,3 +14,11 @@ P5 particles research:
 -create a grid of cells
 -each cell gets an angle (need to use average angles for cells with no angle or two angles)
 -each cell gets a strength (will also need to use averages)
+-can use get() to find if the cell is in land (checks the color of an image pixel)
+
+
+Will help to have a cell class:
+vars:
+active (is cell inland)
+wind dir (deg);
+wind strength (this needs to be put into a map function);

@@ -42,5 +42,3 @@ function calculateCoords(){		/* Calculates X and Y position of cities */
 	}
 }
 
-
-

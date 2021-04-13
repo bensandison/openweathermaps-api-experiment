@@ -8,6 +8,8 @@ const mapData = {	//data about map coordinates
 	mapY : 350,
 }
 
+var particles = [];
+
 function preload(){
 	loadMap();
 	loadWeather();
@@ -15,11 +17,24 @@ function preload(){
 
 function setup() {
 	createCanvas(mapData.mapX, mapData.mapY);
-	background(0);
+	background(200);
 	translate(width / 2, height/2);
 	imageMode(CENTER);
-
 	calculateCoords();	//calculate x and y positions of cities
 
-	image(mapImg, 0, 0);	//Draws map image
+	for (var i = 0; i < 100; i++){
+		particles[i] = new Particle();
+	}
+	
+	//image(mapImg, 0, 0);	//Draws map image
+}
+
+function draw(){
+	strokeWeight(2);
+	background(200, 10);
+	for (var i = 0; i < particles.length; i++){
+		particles[i].update();
+		particles[i].show();
+		particles[i].edges();
+	}
 }

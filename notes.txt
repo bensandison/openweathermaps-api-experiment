@@ -30,3 +30,11 @@ Loop through each cell:
 - calculate average angle and wind speed using nearness weightings
 
 Instead of checking each cell we could check the nearest first
+
+
+
+let windSpeed = 0, windDirection = 0, temprature = 0, distanceMultiplier = 0;		/* temp variables store totals (to be used for averages later) */
+			for(let c = 0; data.list[c].length; c++){	/* loop throgh all cities in dataset */
+				distance = dist(x, y, data.list.mapX, data.list.mapY);	/* calculate distance between the current point and the city */
+				
+			}

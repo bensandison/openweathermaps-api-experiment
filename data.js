@@ -64,7 +64,7 @@ function calcAverages() {	/* function calculates averages and maximums of weathe
 		totalTemp += data.list[i].main.feels_like;	//add temp to total
 		totalWindSpeed += data.list[i].wind.speed;	//add wind to total
 
-		windDegrees.push(data.list[i].wind.deg);	//add wind direction to array (to be used for avg)
+		windDegrees.push(data.list[i].wind.rad);	//add wind direction to array (to be used for avg)
 	}
 
 	//add averages to data object:
@@ -79,22 +79,24 @@ function calcAverages() {	/* function calculates averages and maximums of weathe
 	data.averageWindDirection = Math.round((data.averageWindDirection + Number.EPSILON) * 100) / 100;
 }
 
+function toRadians(){	/* adds a wind angle property to display the angle in radians */
+	for(let i = 0; i<data.list.length; i++){
+		data.list[i].wind.rad = degToRad(data.list[i].wind.deg);
+	}
+
+	//radian conversion function
+	function degToRad(degrees) {
+		let rad = degrees * (Math.PI / 180);
+		return Math.round((rad + Number.EPSILON) * 100) / 100;
+	};
+}
+
 function averageDegrees(arr){	/* function that calculates the average angle from an array of angles */
 	let x = 0, y = 0;	//stores total vector coordinates
 
 	for(let i = 0; i < arr.length; i++){
-		arr[i] = degToRad(arr[i]);	//convert to radians
 		x += Math.cos(arr[i]);	//add x vector coord to x var
 		y += Math.sin(arr[i]);	//add y vector cooord
 	}
-	let avg = radToDeg(Math.atan2(y, x));	//average angle in degrees
-	return Math.round((avg + Number.EPSILON) * 100) / 100	//return average angle rounded to 2dp
-
-	//radian conversion functions
-	function degToRad(degrees) {
-		return degrees * (Math.PI / 180);
-	};
-	function radToDeg(rad) {
-		return rad * (180 / Math.PI);
-	};
+	return Math.round((Math.atan2(y, x) + Number.EPSILON) * 100) / 100	//return average angle rounded to 2dp
 }

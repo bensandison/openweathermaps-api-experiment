@@ -8,7 +8,9 @@ const mapData = {	//data about map coordinates
 	mapY : 350,
 }
 
-var particles = [];
+let cellWidth = 50, cellHeight = 50;	//vars used for defining cells
+let cells = [];	//2D array of cells
+let particles = [];	//array of particles
 
 function preload(){
 	loadMap();
@@ -18,9 +20,14 @@ function preload(){
 function setup() {
 	createCanvas(mapData.mapX, mapData.mapY);
 	background(50);
+
+	//call data class functions
 	calcCoords();	//calculate x and y positions of cities
+	toRadians();
 	calcAverages();
 	
+	print(data);
+
 	image(mapImg, 0, 0);	//draw map image
 	
 	createCells();	//creates cells and calcs weather values for each
@@ -31,6 +38,8 @@ function setup() {
 }
 
 function draw(){
+	noLoop();
+
 	strokeWeight(2);
 	background(50, 20);
 	for (var i = 0; i < particles.length; i++){
@@ -39,18 +48,22 @@ function draw(){
 		particles[i].edges();
 	}
 	image(mapImg, 0, 0);	//draw map image
+
+	fill(200, 200, 0, 100);
+	for(let i = 0; i<cells.length; i++){
+		cells[i].draw()
+	}
 }
 
-function createCells(){		/* function creates cells and gives them weater values */
-	for(let x = 0; mapData.mapX.length / 50; x++){		/* loop through x axis of grid */
-		for(let y = 0; mapData.mapY.length / 50; y++){	/* loop through y axis of grid */
-			let windSpeed = 0, windDirection = 0, temprature = 0, distanceMultiplier = 0;		/* temp variables store totals (to be used for averages later) */
-			for(let c = 0; data.list[i].length; c++){	/* loop throgh all cities in dataset */
-				distance = dist(x*50, y*50, data.list.mapX, data.list.mapY);	/* calculate distance between the current point and the city */
-				if(distance > 200)continue;		/* break from loop if distance is more than 200px */
-				/* else: */
-				windSpeed += data.list[i].speed
-			}
+function createCells(){		/* function creates cells and gives them weather values */
+	for(let x = 0; x < mapData.mapX; x+=cellWidth){		/* loop through x axis of grid */
+		for(let y = 0; y < mapData.mapY; y+=cellHeight){	/* loop through y axis of grid */
+			let xInd = x / cellWidth;	//calc x index
+			let yInd = y / cellHeight;
+
+			cells[(mapData.mapY / cellHeight) * xInd + yInd] = new Cell(x, y);	//here we map a 2d data structure into a 1d array
 		}
 	}
+
+	
 }

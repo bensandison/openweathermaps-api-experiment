@@ -14,7 +14,7 @@ function loadWeather(){		/* constructs openWeatherMaps api uri and loads data */
 	data = loadJSON(weatherUrl);	//load weather data to "data" object
 }
 
-function calculateCoords(){		/* Calculates X and Y position of cities */
+function calcCoords(){		/* Calculates X and Y position of cities */
 	//These functions are used to convert Longitude and Latitude to X and Y positions
 	//They use 'Mercator projection'
 	function mercX(lon) {
@@ -42,3 +42,56 @@ function calculateCoords(){		/* Calculates X and Y position of cities */
 	}
 }
 
+function calcAverages() {	/* function calculates averages and maximums of weather data */	
+	//temp vars used to calc averages:
+	let totalTemp = 0, totalWindSpeed = 0;
+	let windDegrees = [];	//array of degrees will be needed to calculate average
+	
+	//created max and min wind / temp (give them extreme values to be overiden)
+	data.maxWindSpeed = -100;
+	data.minWindSpeed = 100;
+	data.maxTemp = -100;
+	data.minTemp = 100;
+
+	//loop is used to calculate max and minimims for each city:
+	for(let i = 0; i<data.list.length; i++){
+		//max / mins:
+		if (data.maxWindSpeed < data.list[i].wind.speed) data.maxWindSpeed = data.list[i].wind.speed;	//check if max -> add to var
+		if (data.minWindSpeed > data.list[i].wind.speed) data.minWindSpeed = data.list[i].wind.speed;	//check if min -> add to var
+		if (data.maxTemp < data.list[i].main.feels_like) data.maxTemp = data.list[i].main.feels_like;		//max temp
+		if (data.minTemp > data.list[i].main.feels_like) data.minTemp = data.list[i].main.feels_like;
+
+		totalTemp += data.list[i].main.feels_like;	//add temp to total
+		totalWindSpeed += data.list[i].wind.speed;	//add wind to total
+
+		windDegrees.push(data.list[i].wind.deg);	//add wind direction to array (to be used for avg)
+	}
+
+	//add averages to data object:
+	data.averageWindSpeed = totalWindSpeed / data.list.length;	//calcs average
+	data.averageTemp = totalTemp / data.list.length;
+
+	//rounds averages to 2 dp:
+	data.averageWindSpeed = Math.round((data.averageWindSpeed + Number.EPSILON) * 100) / 100;
+	data.averageTemp = Math.round((data.averageTemp + Number.EPSILON) * 100) / 100;
+
+	data.averageWindDirection = averageDegrees(windDegrees);	//send array to averageDegrees function to find mean wind direction
+	data.averageWindDirection = Math.round((data.averageWindDirection + Number.EPSILON) * 100) / 100;
+}
+
+function averageDegrees(arr){	/* function that calculates the average angle from an array of angles */
+	let x = 0, y = 0;
+	for(let i = 0; i < arr.length; i++){
+		x += degToRad(cos(arr[i]));
+		y += degToRad(sin(arr[i]));
+	}
+	return radToDeg(atan2(y, x));
+
+	//radian conversion is needed for this math
+	function degToRad(degrees) {
+		return degrees * (Math.PI / 180);
+	};
+	function radToDeg(rad) {
+		return rad / (Math.PI / 180);
+	};
+}

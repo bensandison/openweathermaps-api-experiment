@@ -22,3 +22,11 @@ vars:
 active (is cell inland)
 wind dir (deg);
 wind strength (this needs to be put into a map function);
+
+
+Loop through each cell:
+- check all cities and get values for nearby
+- use lerp to give each citys value a nearness weighting
+- calculate average angle and wind speed using nearness weightings
+
+Instead of checking each cell we could check the nearest first

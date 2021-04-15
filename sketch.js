@@ -18,14 +18,27 @@ function preload(){
 function setup() {
 	createCanvas(mapData.mapX, mapData.mapY);
 	background(200);
-	translate(width / 2, height/2);
-	imageMode(CENTER);
-	calculateCoords();	//calculate x and y positions of cities
+	calcCoords();	//calculate x and y positions of cities
+	calcAverages();
 	image(mapImg, 0, 0);	//draw map image
+
+	for(let x = 0; mapData.mapX.length / 50; x++){		/* loop through x axis of grid */
+		for(let y = 0; mapData.mapY.length / 50; y++){	/* loop through y axis of grid */
+			let windSpeed = 0, windDirection = 0, temprature = 0, distanceMultiplier = 0;		/* temp variables store totals (to be used for averages later) */
+			for(let c = 0; data.list[i].length; c++){	/* loop throgh all cities in dataset */
+				distance = dist(x*50, y*50, data.list.mapX, data.list.mapY);	/* calculate distance between the current point and the city */
+				if(distance > 200)continue;		/* break from loop if distance is more than 200px */
+				/* else: */
+				windSpeed += data.list[i].speed
+			}
+		}
+	}
 
 	for (var i = 0; i < 100; i++){
 		particles[i] = new Particle();
 	}
+
+	print(data);
 
 }
 
@@ -37,4 +50,5 @@ function draw(){
 		particles[i].show();
 		particles[i].edges();
 	}
+	image(mapImg, 0, 0);	//draw map image
 }

@@ -17,14 +17,13 @@ function preload(){
 
 function setup() {
 	createCanvas(mapData.mapX, mapData.mapY);
-	background(200);
+	background(50);
 	calcCoords();	//calculate x and y positions of cities
 	calcAverages();
 	
 	image(mapImg, 0, 0);	//draw map image
 	
 	createCells();	//creates cells and calcs weather values for each
-
 
 	for (var i = 0; i < 100; i++){
 		particles[i] = new Particle();
@@ -33,7 +32,7 @@ function setup() {
 
 function draw(){
 	strokeWeight(2);
-	background(255, 10);
+	background(50, 20);
 	for (var i = 0; i < particles.length; i++){
 		particles[i].update();
 		particles[i].show();

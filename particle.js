@@ -18,7 +18,7 @@ this.show = function(force) {
 }
 
 this.show = function() {
-	stroke(0);
+	stroke(200);
 	point(this.pos.x, this.pos.y);
 }
 

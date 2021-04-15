@@ -80,18 +80,21 @@ function calcAverages() {	/* function calculates averages and maximums of weathe
 }
 
 function averageDegrees(arr){	/* function that calculates the average angle from an array of angles */
-	let x = 0, y = 0;
-	for(let i = 0; i < arr.length; i++){
-		x += degToRad(cos(arr[i]));
-		y += degToRad(sin(arr[i]));
-	}
-	return radToDeg(atan2(y, x));
+	let x = 0, y = 0;	//stores total vector coordinates
 
-	//radian conversion is needed for this math
+	for(let i = 0; i < arr.length; i++){
+		arr[i] = degToRad(arr[i]);	//convert to radians
+		x += Math.cos(arr[i]);	//add x vector coord to x var
+		y += Math.sin(arr[i]);	//add y vector cooord
+	}
+	let avg = radToDeg(Math.atan2(y, x));	//average angle in degrees
+	return Math.round((avg + Number.EPSILON) * 100) / 100	//return average angle rounded to 2dp
+
+	//radian conversion functions
 	function degToRad(degrees) {
 		return degrees * (Math.PI / 180);
 	};
 	function radToDeg(rad) {
-		return rad / (Math.PI / 180);
+		return rad * (180 / Math.PI);
 	};
 }

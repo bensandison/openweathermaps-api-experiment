@@ -2,8 +2,8 @@ class Cell{		/* cell class stores inportant info about the current cells */
 	constructor(x, y){
 		this.x = x;		//positions of the top right corner of the cells
 		this.y = y;
-		this.xCenter = x + cellWidth;
-		this.yCenter = y + cellHeight;
+		this.xMid = x + cellWidth;
+		this.yMid = y + cellHeight;
 		
 		//these vars will be set in setWeather()
 		this.temp = undefined;
@@ -13,6 +13,10 @@ class Cell{		/* cell class stores inportant info about the current cells */
 		this.setWeather();
 	}
 
+	draw(){
+		
+	}
+
 	setWeather(){
 		let valueFound = false;
 		let multiplier = 0;		//keeps track of how many values have been added to totals (for avg)
@@ -20,7 +24,7 @@ class Cell{		/* cell class stores inportant info about the current cells */
 		let windDirArr = [];	//array of wind directions will be used to find average direction
 
 		for(let i = 0; i < data.list.length; i++){	//loop through all cities in data array
-			let disance = dist(this.xCenter, this.yCenter, data.list[i].xPos, data.list[i].yPos);
+			let disance = dist(this.xMid, this.xMid, data.list[i].xPos, data.list[i].yPos);
 			if(disance > 300) continue;		//go to next city in the data array if its very far;
 
 			valueFound = true;

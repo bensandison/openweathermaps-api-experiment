@@ -7,6 +7,7 @@ const mapData = {	//data about map coordinates
 	mapX : 800,
 	mapY : 350,
 }
+var fr;		//framerate
 
 let cellWidth = 50, cellHeight = 50;	//vars used for defining cells
 let cells = [];	//2D array of cells
@@ -19,6 +20,8 @@ function preload(){
 
 function setup() {
 	createCanvas(mapData.mapX, mapData.mapY);
+	fr = createP('');
+
 	background(50);
 
 	//call data class functions
@@ -38,8 +41,6 @@ function setup() {
 }
 
 function draw(){
-	noLoop();
-
 	strokeWeight(2);
 	background(50, 20);
 	for (var i = 0; i < particles.length; i++){
@@ -49,6 +50,7 @@ function draw(){
 	}
 	image(mapImg, 0, 0);	//draw map image
 
+	fr.html("Frame Rate: " + floor(frameRate()));
 }
 
 function createCells(){		/* function creates cells and gives them weather values */

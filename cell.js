@@ -13,20 +13,6 @@ class Cell{		/* cell class stores inportant info about the current cells */
 		this.setWeather();
 	}
 
-	draw(){
-		noFill();
-		square(this.x, this.y, 50);
-		// fill();
-
-		var v = p5.Vector.fromAngle(this.windDir);
-		stroke(0);
-		push();
-		translate(this.xMid, this.yMid);
-		rotate(v.heading());
-		line(0, 0, 50, 0);
-		pop();
-	}
-
 	setWeather(){
 		let valueFound = false;
 		let multiplier = 0;		//keeps track of how many values have been added to totals (for avg)

@@ -10,7 +10,7 @@ const mapData = {	//data about map coordinates
 let state = {
 	wind : true,
 	temp : false,
-	labels : true,
+	labels : false,
 }
 
 var fr;		//framerate
@@ -18,7 +18,7 @@ var fr;		//framerate
 let cellWidth = 50, cellHeight = 50;	//vars used for defining cells
 let cells = [];	//2D array of cells
 let particles = [];	//array of particles
-let particlesNo = 300, particleResetNo = 3;
+let particlesNo = 600, particleResetNo = 3;
 
 function preload(){
 	loadMap();

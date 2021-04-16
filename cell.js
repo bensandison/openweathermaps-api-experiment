@@ -58,7 +58,7 @@ class Cell{		/* cell class stores inportant info about the current cells */
 		let vectX = cos(this.windDir);
 		let vectY = sin(this.windDir);
 
-		let forceMulti = map(this.windSpeed, data.minWindSpeed, data.maxWindSpeed, 0, 0.2);
+		let forceMulti = map(this.windSpeed, data.minWindSpeed, data.maxWindSpeed, 0, 0.05);
 		this.windVect = createVector(vectX * forceMulti, vectY * forceMulti);
 	}
 	

@@ -28,7 +28,7 @@ function preload(){
 function setup() {
 	createCanvas(mapData.mapX, mapData.mapY);
 	
-	let desc = createElement("h2", "Toggle Buttons");
+	let desc = createElement("h2", "Toggle Buttons:");
 	let windBtn = createButton("Toggle Wind");
 	windBtn.mousePressed(toggleWind);
 	let tempBtn = createButton("Toggle Heat Map");

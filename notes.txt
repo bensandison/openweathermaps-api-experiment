@@ -32,9 +32,23 @@ Loop through each cell:
 Instead of checking each cell we could check the nearest first
 
 
-
 let windSpeed = 0, windDirection = 0, temprature = 0, distanceMultiplier = 0;		/* temp variables store totals (to be used for averages later) */
 			for(let c = 0; data.list[c].length; c++){	/* loop throgh all cities in dataset */
 				distance = dist(x, y, data.list.mapX, data.list.mapY);	/* calculate distance between the current point and the city */
 				
 			}
+
+
+Am I going to get this done: (3AM)
+-get average values for all variables
+-problems with angles
+-blend colours over cells
+-adjust particles to represent wind
+-html
+
+
+Stuff from perlin noise vid:
+-used 2d perlin
+-started with pixels - how to change to vectors
+-creates scale value
+-cols = floor(width / sale);

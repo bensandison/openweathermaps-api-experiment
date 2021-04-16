@@ -43,7 +43,12 @@ function setup() {
 function draw(){
 	strokeWeight(2);
 	background(50, 20);
-	for (var i = 0; i < particles.length; i++){
+
+	for (let i = 0; i<cells.length; i++){
+		cells[i].draw();
+	}
+
+	for (let i = 0; i < particles.length; i++){
 		particles[i].update();
 		particles[i].show();
 		particles[i].edges();

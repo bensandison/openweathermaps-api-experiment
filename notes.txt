@@ -40,8 +40,8 @@ let windSpeed = 0, windDirection = 0, temprature = 0, distanceMultiplier = 0;		/
 
 
 Am I going to get this done: (3AM)
--get average values for all variables
--problems with angles
+-get average values for all variables	/
+-problems with angles	/
 -blend colours over cells
 -adjust particles to represent wind
 -html
@@ -52,3 +52,10 @@ Stuff from perlin noise vid:
 -started with pixels - how to change to vectors
 -creates scale value
 -cols = floor(width / sale);
+
+
+we can map the cells wind speed to an acceleration value (between -0.5 and 0.5?)
+this can be used for the particle acceleration value
+-REMEMBER - the acceleration is stored as a vector (we could instead add a vector in direction of wind)
+
+- he uses applyForce() func to add to acceleration

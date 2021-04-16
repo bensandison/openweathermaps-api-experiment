@@ -9,8 +9,10 @@ class Cell{		/* cell class stores inportant info about the current cells */
 		this.temp = undefined;
 		this.windSpeed = undefined;
 		this.windDir = undefined;
+		this.windVect = undefined;
 
 		this.setWeather();
+		this.setColors();
 	}
 
 	setWeather(){
@@ -52,20 +54,26 @@ class Cell{		/* cell class stores inportant info about the current cells */
 		this.windSpeed = Math.round((this.windSpeed + Number.EPSILON) * 100) / 100;
 		this.windDir = Math.round((this.windDir + Number.EPSILON) * 100) / 100;
 
-		print("X: " + this.x + " Y: " + this.y);
-		print("Temp: " + this.temp + "	Speed: " + this.windSpeed + "	Direc: " + this.windDir);
-		print("------------------------------")
+		//calculate vector from angle:
+		let vectX = cos(this.windDir);
+		let vectY = sin(this.windDir);
+
+		let forceMulti = map(this.windSpeed, data.minWindSpeed, data.maxWindSpeed, 0, 0.2);
+		this.windVect = createVector(vectX * forceMulti, vectY * forceMulti);
+	}
+	
+	setColors(){
+		this.red = map(this.temp, 0, data.maxTemp - 5, 150, 255);
+		this.blue = map(this.temp, -10, 0, 255, 100);
 	}
 
+	getVect(){
+		return this.windVect;
+	}
 
-	//getters
-	getTemp(){
-		return this.temp;
-	}
-	getWindSpeed(){
-		return this.windSpeed;
-	}
-	getWindDir(){
-		return this.windSpeed;
+	drawTemp(){
+		noStroke();
+		fill(this.red, 150, this.blue, 20);
+		circle(this.xMid, this.yMid, 100);
 	}
 }

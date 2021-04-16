@@ -39,6 +39,9 @@ function calcCoords(){		/* Calculates X and Y position of cities */
 	for(let i=0; i<data.list.length; i++){
 		data.list[i].xPos = mercX(data.list[i].coord.Lon) - cx;	//calculate x position
 		data.list[i].yPos = mercY(data.list[i].coord.Lat) - cy;
+
+		data.list[i].xPos = Math.round((data.list[i].xPos + Number.EPSILON) * 100) / 100;	//round values to 2DP
+		data.list[i].yPos = Math.round((data.list[i].yPos + Number.EPSILON) * 100) / 100;
 	}
 }
 
@@ -75,7 +78,7 @@ function calcAverages() {	/* function calculates averages and maximums of weathe
 	data.averageWindSpeed = Math.round((data.averageWindSpeed + Number.EPSILON) * 100) / 100;
 	data.averageTemp = Math.round((data.averageTemp + Number.EPSILON) * 100) / 100;
 
-	data.averageWindDirection = averageDegrees(windDegrees);	//send array to averageDegrees function to find mean wind direction
+	data.averageWindDirection = averageAngle(windDegrees);	//send array to averageDegrees function to find mean wind direction
 	data.averageWindDirection = Math.round((data.averageWindDirection + Number.EPSILON) * 100) / 100;
 }
 
@@ -91,7 +94,7 @@ function toRadians(){	/* adds a wind angle property to display the angle in radi
 	};
 }
 
-function averageDegrees(arr){	/* function that calculates the average angle from an array of angles */
+function averageAngle(arr){	/* function that calculates the average angle from an array of angles */
 	let x = 0, y = 0;	//stores total vector coordinates
 
 	for(let i = 0; i < arr.length; i++){

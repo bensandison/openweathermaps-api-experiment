@@ -32,7 +32,7 @@ function setup() {
 	
 	createCells();	//creates cells and calcs weather values for each
 
-	for (var i = 0; i < 100; i++){
+	for (var i = 0; i < 100; i++){		/* create array of particles */
 		particles[i] = new Particle();
 	}
 }
@@ -49,10 +49,6 @@ function draw(){
 	}
 	image(mapImg, 0, 0);	//draw map image
 
-	fill(200, 200, 0, 100);
-	for(let i = 0; i<cells.length; i++){
-		cells[i].draw()
-	}
 }
 
 function createCells(){		/* function creates cells and gives them weather values */
